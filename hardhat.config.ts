@@ -118,13 +118,10 @@ const config: HardhatUserConfig = {
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
       live: true,
     },
-    'sepolia-patex': {
+    'patex-sepolia': {
       chainId: 471100,
-      url: process.env.L1_RPC || '',
+      url: process.env.L2_RPC || '',
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
-      companionNetworks: {
-        l1: 'sepolia',
-      },
     },
   },
   foundry: {
