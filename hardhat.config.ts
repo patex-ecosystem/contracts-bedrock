@@ -32,7 +32,7 @@ const config: HardhatUserConfig = {
     },
     // NOTE: The 'mainnet' network is currently being used for mainnet rehearsals.
     mainnet: {
-      url: process.env.L1_RPC || '', 
+      url: process.env.L1_RPC || '',
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
       live: true,
     },
@@ -112,11 +112,19 @@ const config: HardhatUserConfig = {
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
       live: true,
     },
-    'sepolia-patex': {
+    'sepolia': {
       chainId: 11155111,
       url: process.env.L1_RPC || '',
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
       live: true,
+    },
+    'sepolia-patex': {
+      chainId: 471100,
+      url: process.env.L1_RPC || '',
+      accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
+      companionNetworks: {
+        l1: 'sepolia',
+      },
     },
   },
   foundry: {
@@ -180,7 +188,7 @@ const config: HardhatUserConfig = {
     settings: {
       metadata: {
         bytecodeHash:
-          process.env.FOUNDRY_PROFILE === 'echidna' ? 'ipfs' : 'none',
+            process.env.FOUNDRY_PROFILE === 'echidna' ? 'ipfs' : 'none',
       },
       outputSelection: {
         '*': {
