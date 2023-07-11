@@ -33,7 +33,7 @@ console.log(
 
   await deploy({
     hre,
-    name: 'L2OutputOracle',
+    name: 'L2OutputOracleCustom',
     args: [
       hre.deployConfig.l2OutputOracleSubmissionInterval,
       hre.deployConfig.l2BlockTime,
