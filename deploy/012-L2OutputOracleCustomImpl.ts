@@ -38,7 +38,7 @@ console.log(
       hre.deployConfig.l2OutputOracleSubmissionInterval,
       hre.deployConfig.l2BlockTime,
       0,
-      hre.deployConfig.l2OutputOracleStartingTimestamp,
+      0,
       hre.deployConfig.l2OutputOracleProposer,
       hre.deployConfig.l2OutputOracleChallenger,
       hre.deployConfig.finalizationPeriodSeconds,
