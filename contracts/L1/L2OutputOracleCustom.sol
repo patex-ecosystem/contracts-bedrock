@@ -370,15 +370,4 @@ contract L2OutputOracleCustom is Initializable, Semver {
         startingTimestamp = _startingTimestamp;
 
     }
-
-    function setL2BlockTime(uint256 _l2BlockTime) public {
-
-        require(
-            msg.sender == CHALLENGER,
-            "L2OutputOracle: only the challenger address is allowed"
-        );
-
-        L2_BLOCK_TIME = _l2BlockTime;
-
-    }
 }
