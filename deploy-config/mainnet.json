@@ -5,7 +5,7 @@
   "l1StartingBlockTag": "0x44b2078a814136a8af22c3135c88a7e2279c7dd0ff270ba538c776905a7b2594",
   "l1ChainID": 1,
   "l2ChainID": 789,
-  "l2BlockTime": 2,
+  "l2BlockTime": 10,
   "maxSequencerDrift": 600,
   "sequencerWindowSize": 3600,
   "channelTimeout": 300,
