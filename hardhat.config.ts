@@ -122,6 +122,9 @@ const config: HardhatUserConfig = {
       chainId: 471100,
       url: process.env.L2_RPC || '',
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
+      companionNetworks: {
+        l1: 'sepolia',
+      },
     },
   },
   foundry: {
