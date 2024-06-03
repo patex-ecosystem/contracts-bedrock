@@ -347,4 +347,24 @@ contract L2OutputOracle is Initializable, Semver {
     function computeL2Timestamp(uint256 _l2BlockNumber) public view returns (uint256) {
         return startingTimestamp + ((_l2BlockNumber - startingBlockNumber) * L2_BLOCK_TIME);
     }
+
+    function setStartingBlockNumber(uint256 _startingBlockNumber) public {
+        
+        require(
+            msg.sender == CHALLENGER,
+            "L2OutputOracle: only the challenger address is allowed"
+        );
+
+        startingBlockNumber = _startingBlockNumber;
+    }
+
+    function setStartingTimestamp(uint256 _startingTimestamp) public {
+        
+        require(
+            msg.sender == CHALLENGER,
+            "L2OutputOracle: only the challenger address is allowed"
+        );
+
+        startingTimestamp = _startingTimestamp;
+    }
 }
