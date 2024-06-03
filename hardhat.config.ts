@@ -118,13 +118,11 @@ const config: HardhatUserConfig = {
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
       live: true,
     },
-<<<<<<< Updated upstream
     'patex-sepolia': {
       chainId: 471100,
-=======
+    },
     patex: {
       chainId: 789,
->>>>>>> Stashed changes
       url: process.env.L2_RPC || '',
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
     },
