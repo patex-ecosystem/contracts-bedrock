@@ -9,6 +9,8 @@ import { SafeCall } from "../libraries/SafeCall.sol";
 import { IPatexMintableERC20, ILegacyMintableERC20 } from "./IPatexMintableERC20.sol";
 import { CrossDomainMessenger } from "./CrossDomainMessenger.sol";
 import { PatexMintableERC20 } from "./PatexMintableERC20.sol";
+import { Initializable } from "../openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+
 
 /**
  * @custom:upgradeable
@@ -17,7 +19,7 @@ import { PatexMintableERC20 } from "./PatexMintableERC20.sol";
  *         the core bridging logic, including escrowing tokens that are native to the local chain
  *         and minting/burning tokens that are native to the remote chain.
  */
-abstract contract StandardBridge {
+abstract contract StandardBridge is Initializable {
     using SafeERC20 for IERC20;
 
     /**
@@ -25,22 +27,22 @@ abstract contract StandardBridge {
      */
     uint32 internal constant RECEIVE_DEFAULT_GAS_LIMIT = 200_000;
 
-    /**
-     * @notice Messenger contract on this domain.
-     */
-    CrossDomainMessenger public immutable MESSENGER;
+    // /**
+    //  * @notice Messenger contract on this domain.
+    //  */
+    // CrossDomainMessenger public immutable MESSENGER;
 
-    /**
-     * @notice Corresponding bridge on the other domain.
-     */
-    StandardBridge public immutable OTHER_BRIDGE;
+    // /**
+    //  * @notice Corresponding bridge on the other domain.
+    //  */
+    // StandardBridge public immutable otherBridge;
 
     /**
      * @custom:legacy
      * @custom:spacer messenger
      * @notice Spacer for backwards compatibility.
      */
-    address private spacer_0_0_20;
+    address private spacer_0_2_20;
 
     /**
      * @custom:legacy
@@ -54,12 +56,19 @@ abstract contract StandardBridge {
      */
     mapping(address => mapping(address => uint256)) public deposits;
 
+    /// @notice Messenger contract on this domain. This public getter is deprecated
+    ///         and will be removed in the future. Please use `messenger` instead.
+    /// @custom:network-specific
+    CrossDomainMessenger public messenger;
+
+    StandardBridge public otherBridge;
+
     /**
      * @notice Reserve extra slots (to a total of 50) in the storage layout for future upgrades.
-     *         A gap size of 47 was chosen here, so that the first slot used in a child contract
+     *         A gap size of 46 was chosen here, so that the first slot used in a child contract
      *         would be a multiple of 50.
      */
-    uint256[47] private __gap;
+    uint256[45] private __gap;
 
     /**
      * @notice Emitted when an ETH bridge is initiated to the other chain.
@@ -147,20 +156,23 @@ abstract contract StandardBridge {
      */
     modifier onlyOtherBridge() {
         require(
-            msg.sender == address(MESSENGER) &&
-                MESSENGER.xDomainMessageSender() == address(OTHER_BRIDGE),
+            msg.sender == address(messenger) && messenger.xDomainMessageSender() == address(otherBridge),
             "StandardBridge: function can only be called from the other bridge"
         );
         _;
     }
 
-    /**
-     * @param _messenger   Address of CrossDomainMessenger on this network.
-     * @param _otherBridge Address of the other StandardBridge contract.
-     */
-    constructor(address payable _messenger, address payable _otherBridge) {
-        MESSENGER = CrossDomainMessenger(_messenger);
-        OTHER_BRIDGE = StandardBridge(_otherBridge);
+    constructor() {}
+
+    /// @notice Initializer.
+    /// @param _messenger   Address of CrossDomainMessenger on this network.
+    // solhint-disable-next-line func-name-mixedcase
+    function __StandardBridge_init(
+        CrossDomainMessenger _messenger, 
+        StandardBridge _otherBridge
+    ) internal onlyInitializing {
+        messenger = _messenger;
+        otherBridge = _otherBridge;
     }
 
     /**
@@ -169,14 +181,16 @@ abstract contract StandardBridge {
      */
     receive() external payable virtual;
 
-    /**
-     * @custom:legacy
-     * @notice Legacy getter for messenger contract.
-     *
-     * @return Messenger contract on this domain.
-     */
-    function messenger() external view returns (CrossDomainMessenger) {
-        return MESSENGER;
+    /// @notice Getter for messenger contract.
+    /// @custom:legacy
+    /// @return Messenger contract on this domain.
+    function MESSENGER() external view returns (CrossDomainMessenger) {
+        return messenger;
+    }
+
+    /// @notice Getter for the remote domain bridge contract.
+    function OHTER_BRIDGE() external view returns (StandardBridge) {
+        return otherBridge;
     }
 
     /**
@@ -296,10 +310,10 @@ abstract contract StandardBridge {
         address _to,
         uint256 _amount,
         bytes calldata _extraData
-    ) public payable onlyOtherBridge {
+    ) public payable virtual onlyOtherBridge {
         require(msg.value == _amount, "StandardBridge: amount sent does not match amount required");
         require(_to != address(this), "StandardBridge: cannot send to self");
-        require(_to != address(MESSENGER), "StandardBridge: cannot send to messenger");
+        require(_to != address(messenger), "StandardBridge: cannot send to messenger");
 
         // Emit the correct events. By default this will be _amount, but child
         // contracts may override this function in order to emit legacy events as well.
@@ -329,7 +343,7 @@ abstract contract StandardBridge {
         address _to,
         uint256 _amount,
         bytes calldata _extraData
-    ) public onlyOtherBridge {
+    ) public virtual onlyOtherBridge {
         if (_isPatexMintableERC20(_localToken)) {
             require(
                 _isCorrectTokenPair(_localToken, _remoteToken),
@@ -374,8 +388,8 @@ abstract contract StandardBridge {
         // contracts may override this function in order to emit legacy events as well.
         _emitETHBridgeInitiated(_from, _to, _amount, _extraData);
 
-        MESSENGER.sendMessage{ value: _amount }(
-            address(OTHER_BRIDGE),
+        messenger.sendMessage{ value: _amount }(
+            address(otherBridge),
             abi.encodeWithSelector(
                 this.finalizeBridgeETH.selector,
                 _from,
@@ -407,7 +421,7 @@ abstract contract StandardBridge {
         uint256 _amount,
         uint32 _minGasLimit,
         bytes memory _extraData
-    ) internal {
+    ) internal virtual {
         if (_isPatexMintableERC20(_localToken)) {
             require(
                 _isCorrectTokenPair(_localToken, _remoteToken),
@@ -424,8 +438,8 @@ abstract contract StandardBridge {
         // contracts may override this function in order to emit legacy events as well.
         _emitERC20BridgeInitiated(_localToken, _remoteToken, _from, _to, _amount, _extraData);
 
-        MESSENGER.sendMessage(
-            address(OTHER_BRIDGE),
+        messenger.sendMessage(
+            address(otherBridge),
             abi.encodeWithSelector(
                 this.finalizeBridgeERC20.selector,
                 // Because this call will be executed on the remote chain, we reverse the order of

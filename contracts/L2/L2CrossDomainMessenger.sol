@@ -4,8 +4,11 @@ pragma solidity 0.8.15;
 import { AddressAliasHelper } from "../vendor/AddressAliasHelper.sol";
 import { Predeploys } from "../libraries/Predeploys.sol";
 import { CrossDomainMessenger } from "../universal/CrossDomainMessenger.sol";
-import { Semver } from "../universal/Semver.sol";
+import { ISemver } from "../universal/ISemver.sol";
 import { L2ToL1MessagePasser } from "./L2ToL1MessagePasser.sol";
+import { Postdeploys } from "../L2/Postdeploys.sol";
+import { Patex, YieldMode, GasMode } from "../L2/Patex.sol";
+import { Constants } from "../libraries/Constants.sol";
 
 /**
  * @custom:proxied
@@ -15,24 +18,36 @@ import { L2ToL1MessagePasser } from "./L2ToL1MessagePasser.sol";
  *         L2 on the L2 side. Users are generally encouraged to use this contract instead of lower
  *         level message passing contracts.
  */
-contract L2CrossDomainMessenger is CrossDomainMessenger, Semver {
+contract L2CrossDomainMessenger is CrossDomainMessenger, ISemver {
+
+    Postdeploys public postdeploys;
+
+    /// @custom:semver 1.7.0
+    string public constant version = "1.7.0";
     /**
      * @custom:semver 1.1.0
      *
      * @param _l1CrossDomainMessenger Address of the L1CrossDomainMessenger contract.
      */
     constructor(address _l1CrossDomainMessenger)
-        Semver(1, 1, 0)
         CrossDomainMessenger(_l1CrossDomainMessenger)
     {
-        initialize();
+        _disableInitializers();
     }
 
     /**
      * @notice Initializer.
      */
-    function initialize() public initializer {
+    function initialize(Postdeploys _postdeploys) public reinitializer(10) {
         __CrossDomainMessenger_init();
+
+        postdeploys = _postdeploys;
+        Patex(Postdeploys(postdeploys).PATEX()).configureContract(
+            address(this),
+            YieldMode.VOID,
+            GasMode.VOID,
+            address(0xdead) /// don't set a governor
+        );
     }
 
     /**
@@ -70,6 +85,6 @@ contract L2CrossDomainMessenger is CrossDomainMessenger, Semver {
      * @inheritdoc CrossDomainMessenger
      */
     function _isUnsafeTarget(address _target) internal view override returns (bool) {
-        return _target == address(this) || _target == address(Predeploys.L2_TO_L1_MESSAGE_PASSER);
+        return _target == address(this) || _target == address(Predeploys.L2_TO_L1_MESSAGE_PASSER) || _target == address(Postdeploys(postdeploys).PATEX());
     }
 }

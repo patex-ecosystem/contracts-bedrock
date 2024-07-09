@@ -95,9 +95,12 @@ contract L1StandardBridge is StandardBridge, Semver {
      *
      * @param _messenger Address of the L1CrossDomainMessenger.
      */
-    constructor(address payable _messenger)
+    // constructor(address payable _messenger)
+    //     Semver(1, 1, 0)
+    //     StandardBridge(StandardBridge(payable(Predeploys.L2_STANDARD_BRIDGE)))
+    // {}
+     constructor(address payable _messenger)
         Semver(1, 1, 0)
-        StandardBridge(_messenger, payable(Predeploys.L2_STANDARD_BRIDGE))
     {}
 
     /**
@@ -251,7 +254,7 @@ contract L1StandardBridge is StandardBridge, Semver {
      * @return Address of the corresponding L2 bridge contract.
      */
     function l2TokenBridge() external view returns (address) {
-        return address(OTHER_BRIDGE);
+        return address(otherBridge);
     }
 
     /**

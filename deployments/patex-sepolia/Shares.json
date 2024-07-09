@@ -1,0 +1,360 @@
+{
+  "address": "0x7640334E0f3C5Cc2aAd6379993af2A3f79776116",
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_reporter",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "REPORTER",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "addValue",
+      "inputs": [
+        {
+          "name": "value",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "count",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "initialize",
+      "inputs": [
+        {
+          "name": "_price",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "_postdeploys",
+          "type": "address",
+          "internalType": "contract Postdeploys"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "pending",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "postdeploys",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract Postdeploys"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "price",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "version",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "Initialized",
+      "inputs": [
+        {
+          "name": "version",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "uint8"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "NewPrice",
+      "inputs": [
+        {
+          "name": "price",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "DistributeFailed",
+      "inputs": [
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "pending",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidReporter",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "PriceIsInitialized",
+      "inputs": []
+    }
+  ],
+  "transactionHash": "0x7513ff902ff066f6476da6490b9128dfbadd5e8706ff5892f93fdcf2128ba34d",
+  "receipt": {
+    "to": null,
+    "from": "0x85a535089054BEd462875cDc1941aa662579e9bD",
+    "contractAddress": "0x7640334E0f3C5Cc2aAd6379993af2A3f79776116",
+    "transactionIndex": 1,
+    "gasUsed": "782844",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000080000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xeeebf54d58542add3528f30a7472981c3b21caa58a6fbe4e0730da188256a064",
+    "transactionHash": "0x7513ff902ff066f6476da6490b9128dfbadd5e8706ff5892f93fdcf2128ba34d",
+    "logs": [
+      {
+        "transactionIndex": 1,
+        "blockNumber": 2478856,
+        "transactionHash": "0x7513ff902ff066f6476da6490b9128dfbadd5e8706ff5892f93fdcf2128ba34d",
+        "address": "0x7640334E0f3C5Cc2aAd6379993af2A3f79776116",
+        "topics": [
+          "0x7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb3847402498"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000000000000000ff",
+        "logIndex": 0,
+        "blockHash": "0xeeebf54d58542add3528f30a7472981c3b21caa58a6fbe4e0730da188256a064"
+      }
+    ],
+    "blockNumber": 2478856,
+    "cumulativeGasUsed": "835345",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x16Cc7b51de361A845AD070ed6E792b2BB720f8c6"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "9778d091a5acf256a03d242fa5a61eb7",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reporter\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"pending\",\"type\":\"uint256\"}],\"name\":\"DistributeFailed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidReporter\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PriceIsInitialized\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"NewPrice\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"REPORTER\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"addValue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"count\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"internalType\":\"contract Postdeploys\",\"name\":\"_postdeploys\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pending\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"postdeploys\",\"outputs\":[{\"internalType\":\"contract Postdeploys\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"price\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"custom:predeploy\":\"0x4300000000000000000000000000000000000000\",\"kind\":\"dev\",\"methods\":{\"addValue(uint256)\":{\"params\":{\"value\":\"Amount of new yield\"}},\"count()\":{\"returns\":{\"_0\":\"Total number of shares.\"}},\"version()\":{\"returns\":{\"_0\":\"Semver contract version as a string.\"}}},\"title\":\"Shares\",\"version\":1},\"userdoc\":{\"events\":{\"NewPrice(uint256)\":{\"notice\":\"Emitted when a new share price is set after a yield event.\"}},\"kind\":\"user\",\"methods\":{\"REPORTER()\":{\"notice\":\"Approved yield reporter.\"},\"addValue(uint256)\":{\"notice\":\"Report a yield event and update the share price.\"},\"constructor\":{\"notice\":\"_reporter Address of approved yield reporter.\"},\"count()\":{\"notice\":\"Get the total number of shares. Needs to be         overridden by the child contract.\"},\"initialize(uint256,address)\":{\"notice\":\"Initializer.\"},\"pending()\":{\"notice\":\"Accumulated yield that has not been distributed         to the share price.\"},\"price()\":{\"notice\":\"Share price. This value can only increase.\"},\"version()\":{\"notice\":\"Returns the full semver contract version.\"}},\"notice\":\"Integrated EVM contract to manage native ether share         rebasing from yield reports.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/L2/Shares.sol\":\"Shares\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/contracts-upgradeable/=node_modules/@openzeppelin/contracts-upgradeable/\",\":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/\",\":@rari-capital/solmate/=node_modules/@rari-capital/solmate/\",\":ds-test/=node_modules/ds-test/src/\",\":forge-std/=node_modules/forge-std/src/\",\":hardhat-deploy/=node_modules/hardhat-deploy/\",\":hardhat/=node_modules/hardhat/\",\":solmate/=node_modules/solmate/\"]},\"sources\":{\"contracts/L2/Patex.sol\":{\"keccak256\":\"0x7a68c75e852e31700befa018dd9b16697901ecf2ec9ffb955907936c40edb978\",\"license\":\"BSL 1.1 - Copyright 2024 MetaLayer Labs Ltd.\",\"urls\":[\"bzz-raw://71f34e944c69c1f35154c9da0d0fe3f66c58b1edf1d4d2b4885ec2f2c835341c\",\"dweb:/ipfs/QmdLrGMT6khzZ8Cu3L9fxjmKcj5E7Ng8xroVJ466R3ySEN\"]},\"contracts/L2/Gas.sol\":{\"keccak256\":\"0x7c8bc569d175fcc7ef62fd1c25046909ab1db7431fc2088ba004e81a89303ca4\",\"license\":\"BSL 1.1 - Copyright 2024 MetaLayer Labs Ltd.\",\"urls\":[\"bzz-raw://46845f051087a67511bbdc5d12e9fea033876ec7d78988702814792ed6531063\",\"dweb:/ipfs/QmPpcFTfXaeHYday7uD1jBHwroAnT6gAcmeqAcf2q5wt8S\"]},\"contracts/L2/Postdeploys.sol\":{\"keccak256\":\"0xba27027e830fd4f956a17a4b38b69a98ddf2f743f34b4637b0b0fcd60273066c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d2ea47618f72354ee36fe91b34515eb34526488f01d96c2da5b6c8293602600\",\"dweb:/ipfs/QmNXgFyL4uH5vu7KYJKW7quWVjHACrhCrUsumuJT6hmASw\"]},\"contracts/L2/Shares.sol\":{\"keccak256\":\"0x09a15a7d275813252df712313ef84ca9b10260626fdaf8a5c36944e9f8a00c11\",\"license\":\"BSL 1.1 - Copyright 2024 MetaLayer Labs Ltd.\",\"urls\":[\"bzz-raw://c16b250aff58d15e1bb8282d54e11b3d420dd96fa649db149bb54a9ed6e8c495\",\"dweb:/ipfs/QmdCPmvxqn2ksjPD5KqMkgE9sJJiV1vBS6zNDf8acTv1Ca\"]},\"contracts/openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x89be10e757d242e9b18d5a32c9fbe2019f6d63052bbe46397a430a1d60d7f794\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f103ee2e4aecd37aac6ceefe670709cdd7613dee25fa2d4d9feaf7fc0aaa155e\",\"dweb:/ipfs/QmRiNZLoJk5k3HPMYGPGjZFd2ke1ZxjhJZkM45Ec9GH9hv\"]},\"contracts/openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x9c80f545915582e63fe206c6ce27cbe85a86fc10b9cd2a0e8c9488fb7c2ee422\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://310136ad60820af4177a11a61d77a3686faf5fca4942b600e08fc940db38396b\",\"dweb:/ipfs/QmbCzMNSTL7Zi7M4UCSqBrkHtp4jjxUnGbkneCZKdR1qeq\"]},\"contracts/universal/Semver.sol\":{\"keccak256\":\"0x400059d3edb9efc9c23e6fbc18de6710f9235a4ffba4ab23bdb9f825273f093b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9baf7797439c0ae6512f4639dfc6a1934dbd4e4d7cbb8e63e99264ff47682c9e\",\"dweb:/ipfs/QmawAuhppPyeoZH3rC1uh87xDELa9Lyfw5pYsBqE8myE1m\"]},\"contracts/vendor/AddressAliasHelper.sol\":{\"keccak256\":\"0xe7c8a5ce9025d4803283d7509e3e02039c048526b77da57a431b5b24a2873c2d\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://3dd671c7b59d178997109524fc5e006969a0eace54591a2645659cf3ad2583f8\",\"dweb:/ipfs/QmS53Ggv1iXb99E9BzGQktWs12gV9N9TsCjbaMVEyo7j7S\"]},\"node_modules/@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2\",\"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y\"]},\"node_modules/@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]},\"node_modules/@openzeppelin/contracts/utils/Strings.sol\":{\"keccak256\":\"0xaf159a8b1923ad2a26d516089bceca9bdeaeacd04be50983ea00ba63070f08a3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6f2cf1c531122bc7ca96b8c8db6a60deae60441e5223065e792553d4849b5638\",\"dweb:/ipfs/QmPBdJmBBABMDCfyDjCbdxgiqRavgiSL88SYPGibgbPas9\"]},\"node_modules/@openzeppelin/contracts/utils/math/Math.sol\":{\"keccak256\":\"0xd15c3e400531f00203839159b2b8e7209c5158b35618f570c695b7e47f12e9f0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b600b852e0597aa69989cc263111f02097e2827edc1bdc70306303e3af5e9929\",\"dweb:/ipfs/QmU4WfM28A1nDqghuuGeFmN3CnVrk6opWtiF65K4vhFPeC\"]},\"node_modules/solmate/src/tokens/ERC20.sol\":{\"keccak256\":\"0xcdfd8db76b2a3415620e4d18cc5545f3d50de792dbf2c3dd5adb40cbe6f94b10\",\"license\":\"AGPL-3.0-only\",\"urls\":[\"bzz-raw://57b3ab70cde374af1cf2c9888636e8de6cf660f087b1c9abd805e9271e19fa35\",\"dweb:/ipfs/QmNrLDBAHYFjpjSd12jerm1AdBkDqEYUUaXgnT854BUZ97\"]},\"node_modules/solmate/src/utils/SafeTransferLib.sol\":{\"keccak256\":\"0x6ab948013c2c7ca6351e593600425b0ec6df9035320280c678e735bce16e996b\",\"license\":\"AGPL-3.0-only\",\"urls\":[\"bzz-raw://2ab977d0eeb2bf458f9798250215c646d2f3b1f90b5a7e2b506fdf3335c0f060\",\"dweb:/ipfs/QmYPRoPhNtBAmCSq7imN1scMVpKNQvMTpoqab3tXUx5Tnv\"]}},\"version\":1}",
+  "bytecode": "0x61010060405234801561001157600080fd5b50604051610e50380380610e5083398101604081905261003091610119565b6001600160a01b038116608052600160a052600060c081905260e05261005461005a565b50610149565b600054610100900460ff16156100c65760405162461bcd60e51b815260206004820152602760248201527f496e697469616c697a61626c653a20636f6e747261637420697320696e697469604482015266616c697a696e6760c81b606482015260840160405180910390fd5b60005460ff90811614610117576000805460ff191660ff9081179091556040519081527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b565b60006020828403121561012b57600080fd5b81516001600160a01b038116811461014257600080fd5b9392505050565b60805160a05160c05160e051610cc861018860003960006101b80152600061018f0152600061016601526000818160d3015261080a0152610cc86000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c8063a035b1fe1161005b578063a035b1fe1461011a578063cfb3991414610123578063da35a26f14610143578063e20ccec31461015657600080fd5b806306661abd1461008d57806354fd4d50146100a45780635b9af12b146100b95780637ae556b5146100ce575b600080fd5b6033545b6040519081526020015b60405180910390f35b6100ac61015f565b60405161009b919061098e565b6100cc6100c73660046109df565b610202565b005b6100f57f000000000000000000000000000000000000000000000000000000000000000081565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200161009b565b61009160015481565b6034546100f59073ffffffffffffffffffffffffffffffffffffffff1681565b6100cc610151366004610a1a565b61020e565b61009160025481565b606061018a7f00000000000000000000000000000000000000000000000000000000000000006104d7565b6101b37f00000000000000000000000000000000000000000000000000000000000000006104d7565b6101dc7f00000000000000000000000000000000000000000000000000000000000000006104d7565b6040516020016101ee93929190610a4a565b604051602081830303815290604052905090565b61020b81610614565b50565b600054610100900460ff161580801561022e5750600054600160ff909116105b806102485750303b158015610248575060005460ff166001145b6102d9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201527f647920696e697469616c697a656400000000000000000000000000000000000060648201526084015b60405180910390fd5b600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00166001179055801561033757600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff166101001790555b6103408361071d565b603480547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff8416908117909155604080517f97d7577600000000000000000000000000000000000000000000000000000000815290516397d75776916004808201926020929091908290030181865afa1580156103d7573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103fb9190610ac0565b73ffffffffffffffffffffffffffffffffffffffff16634c802f38306001600061dead6040518563ffffffff1660e01b815260040161043d9493929190610b13565b600060405180830381600087803b15801561045757600080fd5b505af115801561046b573d6000803e3d6000fd5b5050505080156104d257600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff169055604051600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b505050565b60608160000361051a57505060408051808201909152600181527f3000000000000000000000000000000000000000000000000000000000000000602082015290565b8160005b8115610544578061052e81610b9f565b915061053d9050600a83610c06565b915061051e565b60008167ffffffffffffffff81111561055f5761055f610c1a565b6040519080825280601f01601f191660200182016040528015610589576020820181803683370190505b5090505b841561060c5761059e600183610c49565b91506105ab600a86610c60565b6105b6906030610c74565b60f81b8183815181106105cb576105cb610c8c565b60200101907effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916908160001a905350610605600a86610c06565b945061058d565b949350505050565b61061d816107f3565b603460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632577bba16040518163ffffffff1660e01b8152600401602060405180830381865afa15801561068a573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106ae9190610ac0565b73ffffffffffffffffffffffffffffffffffffffff16635b9af12b826040518263ffffffff1660e01b81526004016106e891815260200190565b600060405180830381600087803b15801561070257600080fd5b505af1158015610716573d6000803e3d6000fd5b5050505050565b600054610100900460ff166107b4576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602b60248201527f496e697469616c697a61626c653a20636f6e7472616374206973206e6f74206960448201527f6e697469616c697a696e6700000000000000000000000000000000000000000060648201526084016102d0565b600154156107ee576040517f4c72d1b400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600155565b73ffffffffffffffffffffffffffffffffffffffff7f0000000000000000000000000000000000000000000000000000000000000000167fffffffffffffffffffffffffeeeeffffffffffffffffffffffffffffffffeeef330173ffffffffffffffffffffffffffffffffffffffff161461089a576040517f3ae6ee0a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b80156108b85780600260008282546108b29190610c74565b90915550505b6108c06108c4565b5050565b60006108cf60335490565b60025410806108de5750603354155b156108e95750600090565b6033546002546108f99190610c06565b6001600082825461090a9190610c74565b909155505060335460025461091f9190610c60565b6002556001546040519081527f270b316b51ab2cf3a3bb8ca4d22e76a327d05e762fcaa8bd6afaf8cfde9270b79060200160405180910390a150600190565b60005b83811015610979578181015183820152602001610961565b83811115610988576000848401525b50505050565b60208152600082518060208401526109ad81604085016020870161095e565b601f017fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0169190910160400192915050565b6000602082840312156109f157600080fd5b5035919050565b73ffffffffffffffffffffffffffffffffffffffff8116811461020b57600080fd5b60008060408385031215610a2d57600080fd5b823591506020830135610a3f816109f8565b809150509250929050565b60008451610a5c81846020890161095e565b80830190507f2e000000000000000000000000000000000000000000000000000000000000008082528551610a98816001850160208a0161095e565b60019201918201528351610ab381600284016020880161095e565b0160020195945050505050565b600060208284031215610ad257600080fd5b8151610add816109f8565b9392505050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602160045260246000fd5b73ffffffffffffffffffffffffffffffffffffffff8581168252608082019060038610610b4257610b42610ae4565b85602084015260028510610b5857610b58610ae4565b84604084015280841660608401525095945050505050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8203610bd057610bd0610b70565b5060010190565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601260045260246000fd5b600082610c1557610c15610bd7565b500490565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b600082821015610c5b57610c5b610b70565b500390565b600082610c6f57610c6f610bd7565b500690565b60008219821115610c8757610c87610b70565b500190565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fdfea164736f6c634300080f000a",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100885760003560e01c8063a035b1fe1161005b578063a035b1fe1461011a578063cfb3991414610123578063da35a26f14610143578063e20ccec31461015657600080fd5b806306661abd1461008d57806354fd4d50146100a45780635b9af12b146100b95780637ae556b5146100ce575b600080fd5b6033545b6040519081526020015b60405180910390f35b6100ac61015f565b60405161009b919061098e565b6100cc6100c73660046109df565b610202565b005b6100f57f000000000000000000000000000000000000000000000000000000000000000081565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200161009b565b61009160015481565b6034546100f59073ffffffffffffffffffffffffffffffffffffffff1681565b6100cc610151366004610a1a565b61020e565b61009160025481565b606061018a7f00000000000000000000000000000000000000000000000000000000000000006104d7565b6101b37f00000000000000000000000000000000000000000000000000000000000000006104d7565b6101dc7f00000000000000000000000000000000000000000000000000000000000000006104d7565b6040516020016101ee93929190610a4a565b604051602081830303815290604052905090565b61020b81610614565b50565b600054610100900460ff161580801561022e5750600054600160ff909116105b806102485750303b158015610248575060005460ff166001145b6102d9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201527f647920696e697469616c697a656400000000000000000000000000000000000060648201526084015b60405180910390fd5b600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00166001179055801561033757600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff166101001790555b6103408361071d565b603480547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff8416908117909155604080517f97d7577600000000000000000000000000000000000000000000000000000000815290516397d75776916004808201926020929091908290030181865afa1580156103d7573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103fb9190610ac0565b73ffffffffffffffffffffffffffffffffffffffff16634c802f38306001600061dead6040518563ffffffff1660e01b815260040161043d9493929190610b13565b600060405180830381600087803b15801561045757600080fd5b505af115801561046b573d6000803e3d6000fd5b5050505080156104d257600080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff169055604051600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b505050565b60608160000361051a57505060408051808201909152600181527f3000000000000000000000000000000000000000000000000000000000000000602082015290565b8160005b8115610544578061052e81610b9f565b915061053d9050600a83610c06565b915061051e565b60008167ffffffffffffffff81111561055f5761055f610c1a565b6040519080825280601f01601f191660200182016040528015610589576020820181803683370190505b5090505b841561060c5761059e600183610c49565b91506105ab600a86610c60565b6105b6906030610c74565b60f81b8183815181106105cb576105cb610c8c565b60200101907effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916908160001a905350610605600a86610c06565b945061058d565b949350505050565b61061d816107f3565b603460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632577bba16040518163ffffffff1660e01b8152600401602060405180830381865afa15801561068a573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106ae9190610ac0565b73ffffffffffffffffffffffffffffffffffffffff16635b9af12b826040518263ffffffff1660e01b81526004016106e891815260200190565b600060405180830381600087803b15801561070257600080fd5b505af1158015610716573d6000803e3d6000fd5b5050505050565b600054610100900460ff166107b4576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602b60248201527f496e697469616c697a61626c653a20636f6e7472616374206973206e6f74206960448201527f6e697469616c697a696e6700000000000000000000000000000000000000000060648201526084016102d0565b600154156107ee576040517f4c72d1b400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600155565b73ffffffffffffffffffffffffffffffffffffffff7f0000000000000000000000000000000000000000000000000000000000000000167fffffffffffffffffffffffffeeeeffffffffffffffffffffffffffffffffeeef330173ffffffffffffffffffffffffffffffffffffffff161461089a576040517f3ae6ee0a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b80156108b85780600260008282546108b29190610c74565b90915550505b6108c06108c4565b5050565b60006108cf60335490565b60025410806108de5750603354155b156108e95750600090565b6033546002546108f99190610c06565b6001600082825461090a9190610c74565b909155505060335460025461091f9190610c60565b6002556001546040519081527f270b316b51ab2cf3a3bb8ca4d22e76a327d05e762fcaa8bd6afaf8cfde9270b79060200160405180910390a150600190565b60005b83811015610979578181015183820152602001610961565b83811115610988576000848401525b50505050565b60208152600082518060208401526109ad81604085016020870161095e565b601f017fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0169190910160400192915050565b6000602082840312156109f157600080fd5b5035919050565b73ffffffffffffffffffffffffffffffffffffffff8116811461020b57600080fd5b60008060408385031215610a2d57600080fd5b823591506020830135610a3f816109f8565b809150509250929050565b60008451610a5c81846020890161095e565b80830190507f2e000000000000000000000000000000000000000000000000000000000000008082528551610a98816001850160208a0161095e565b60019201918201528351610ab381600284016020880161095e565b0160020195945050505050565b600060208284031215610ad257600080fd5b8151610add816109f8565b9392505050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602160045260246000fd5b73ffffffffffffffffffffffffffffffffffffffff8581168252608082019060038610610b4257610b42610ae4565b85602084015260028510610b5857610b58610ae4565b84604084015280841660608401525095945050505050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8203610bd057610bd0610b70565b5060010190565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601260045260246000fd5b600082610c1557610c15610bd7565b500490565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b600082821015610c5b57610c5b610b70565b500390565b600082610c6f57610c6f610bd7565b500690565b60008219821115610c8757610c87610b70565b500190565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fdfea164736f6c634300080f000a",
+  "devdoc": {
+    "version": 1,
+    "kind": "dev",
+    "methods": {
+      "addValue(uint256)": {
+        "params": {
+          "value": "Amount of new yield"
+        }
+      },
+      "count()": {
+        "returns": {
+          "_0": "Total number of shares."
+        }
+      },
+      "version()": {
+        "returns": {
+          "_0": "Semver contract version as a string."
+        }
+      }
+    },
+    "title": "Shares"
+  },
+  "userdoc": {
+    "version": 1,
+    "kind": "user",
+    "methods": {
+      "REPORTER()": {
+        "notice": "Approved yield reporter."
+      },
+      "addValue(uint256)": {
+        "notice": "Report a yield event and update the share price."
+      },
+      "constructor": {
+        "notice": "_reporter Address of approved yield reporter."
+      },
+      "count()": {
+        "notice": "Get the total number of shares. Needs to be         overridden by the child contract."
+      },
+      "initialize(uint256,address)": {
+        "notice": "Initializer."
+      },
+      "pending()": {
+        "notice": "Accumulated yield that has not been distributed         to the share price."
+      },
+      "price()": {
+        "notice": "Share price. This value can only increase."
+      },
+      "version()": {
+        "notice": "Returns the full semver contract version."
+      }
+    },
+    "events": {
+      "NewPrice(uint256)": {
+        "notice": "Emitted when a new share price is set after a yield event."
+      }
+    },
+    "notice": "Integrated EVM contract to manage native ether share         rebasing from yield reports."
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 21417,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "_initialized",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint8"
+      },
+      {
+        "astId": 21420,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "_initializing",
+        "offset": 1,
+        "slot": "0",
+        "type": "t_bool"
+      },
+      {
+        "astId": 7986,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "price",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 7989,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "pending",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 7994,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "__gap",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_array(t_uint256)48_storage"
+      },
+      {
+        "astId": 8137,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "_count",
+        "offset": 0,
+        "slot": "51",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 8140,
+        "contract": "contracts/L2/Shares.sol:Shares",
+        "label": "postdeploys",
+        "offset": 0,
+        "slot": "52",
+        "type": "t_contract(Postdeploys)7926"
+      }
+    ],
+    "types": {
+      "t_array(t_uint256)48_storage": {
+        "encoding": "inplace",
+        "label": "uint256[48]",
+        "numberOfBytes": "1536",
+        "base": "t_uint256"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_contract(Postdeploys)7926": {
+        "encoding": "inplace",
+        "label": "contract Postdeploys",
+        "numberOfBytes": "20"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint8": {
+        "encoding": "inplace",
+        "label": "uint8",
+        "numberOfBytes": "1"
+      }
+    }
+  }
+}

@@ -12,24 +12,29 @@ contract EchidnaFuzzPatexPortal {
     bool internal failedToComplete;
 
     constructor() {
-        ResourceMetering.ResourceConfig memory rcfg = Constants.DEFAULT_RESOURCE_CONFIG();
+        // restaking commented
+        // ResourceMetering.ResourceConfig memory rcfg = Constants.DEFAULT_RESOURCE_CONFIG();
 
-        SystemConfig systemConfig = new SystemConfig({
-            _owner: address(1),
-            _overhead: 0,
-            _scalar: 10000,
-            _batcherHash: bytes32(0),
-            _gasLimit: 30_000_000,
-            _unsafeBlockSigner: address(0),
-            _config: rcfg
-        });
+        // restaking commented
+        // SystemConfig systemConfig = new SystemConfig({
+        //     _owner: address(1),
+        //     _overhead: 0,
+        //     _scalar: 10000,
+        //     _batcherHash: bytes32(0),
+        //     _gasLimit: 30_000_000,
+        //     _unsafeBlockSigner: address(0),
+        //     _config: rcfg
+        // });
 
-        portal = new PatexPortal({
-            _l2Oracle: L2OutputOracle(address(0)),
-            _guardian: address(0),
-            _paused: false,
-            _config: systemConfig
-        });
+        // restaking commented
+        // portal = new PatexPortal({
+        //     _l2Oracle: L2OutputOracle(address(0)),
+        //     _guardian: address(0),
+        //     _paused: false,
+        //     _config: systemConfig
+        // });
+        // restaking tmp
+        portal = new PatexPortal();
     }
 
     // A test intended to identify any unexpected halting conditions

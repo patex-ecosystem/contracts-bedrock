@@ -11,7 +11,9 @@ import { Hashing } from "../libraries/Hashing.sol";
 import { SecureMerkleTrie } from "../libraries/trie/SecureMerkleTrie.sol";
 import { AddressAliasHelper } from "../vendor/AddressAliasHelper.sol";
 import { ResourceMetering } from "./ResourceMetering.sol";
-import { Semver } from "../universal/Semver.sol";
+import { ISemver } from "../universal/ISemver.sol";
+import { ETHYieldManager } from "../mainnet-bridge/ETHYieldManager.sol";
+import { Postdeploys } from "../L2/Postdeploys.sol";
 
 /**
  * @custom:proxied
@@ -20,7 +22,7 @@ import { Semver } from "../universal/Semver.sol";
  *         and L2. Messages sent directly to the PatexPortal have no form of replayability.
  *         Users are encouraged to use the L1CrossDomainMessenger for a higher-level interface.
  */
-contract PatexPortal is Initializable, ResourceMetering, Semver {
+contract PatexPortal is Initializable, ResourceMetering, ISemver {
     /**
      * @notice Represents a proven withdrawal.
      *
@@ -32,6 +34,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         bytes32 outputRoot;
         uint128 timestamp;
         uint128 l2OutputIndex;
+        uint256 requestId;
     }
 
     /**
@@ -44,20 +47,8 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
      */
     uint64 internal constant RECEIVE_DEFAULT_GAS_LIMIT = 100_000;
 
-    /**
-     * @notice Address of the L2OutputOracle contract.
-     */
-    L2OutputOracle public immutable L2_ORACLE;
-
-    /**
-     * @notice Address of the SystemConfig contract.
-     */
-    SystemConfig public immutable SYSTEM_CONFIG;
-
-    /**
-     * @notice Address that has the ability to pause and unpause withdrawals.
-     */
-    address public immutable GUARDIAN;
+    /// @notice The L1 gas limit set when sending eth to the YieldManager.
+    uint64 internal constant SEND_DEFAULT_GAS_LIMIT = 100_000;
 
     /**
      * @notice Address of the L2 account which initiated a withdrawal in this transaction. If the
@@ -82,6 +73,23 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
      */
     bool public paused;
 
+    /// @notice Address of the L2OutputOracle contract.
+    /// @custom:network-specific
+    L2OutputOracle public l2Oracle;
+
+    /// @notice Address of the SystemConfig contract.
+    /// @custom:network-specific
+    SystemConfig public systemConfig;
+
+    /// @notice Address that has the ability to pause and unpause withdrawals.
+    /// @custom:network-specific
+    address public guardian;
+
+    /// @notice Address of the ETH yield manager.
+    ETHYieldManager public yieldManager;
+
+    Postdeploys public postdeploys;
+
     /**
      * @notice Emitted when a transaction is deposited from L1 to L2. The parameters of this event
      *         are read by the rollup node and used to derive deposit transactions on L2.
@@ -102,20 +110,23 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
      * @notice Emitted when a withdrawal transaction is proven.
      *
      * @param withdrawalHash Hash of the withdrawal transaction.
+     * @param requestId      Id of the withdrawal request
      */
     event WithdrawalProven(
         bytes32 indexed withdrawalHash,
         address indexed from,
-        address indexed to
+        address indexed to,
+        uint256 requestId
     );
 
     /**
      * @notice Emitted when a withdrawal transaction is finalized.
      *
      * @param withdrawalHash Hash of the withdrawal transaction.
+     * @param hintId is the checkpoint ID produce by YieldManager
      * @param success        Whether the withdrawal transaction was successful.
      */
-    event WithdrawalFinalized(bytes32 indexed withdrawalHash, bool success);
+    event WithdrawalFinalized(bytes32 indexed withdrawalHash, uint256 indexed hintId, bool success);
 
     /**
      * @notice Emitted when the pause is triggered.
@@ -139,40 +150,73 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         _;
     }
 
-    /**
-     * @custom:semver 1.3.1
-     *
-     * @param _l2Oracle                  Address of the L2OutputOracle contract.
-     * @param _guardian                  Address that can pause deposits and withdrawals.
-     * @param _paused                    Sets the contract's pausability state.
-     * @param _config                    Address of the SystemConfig contract.
-     */
-    constructor(
-        L2OutputOracle _l2Oracle,
-        address _guardian,
-        bool _paused,
-        SystemConfig _config
-    ) Semver(1, 3, 1) {
-        L2_ORACLE = _l2Oracle;
-        GUARDIAN = _guardian;
-        SYSTEM_CONFIG = _config;
-        initialize(_paused);
+    /// @notice Semantic version.
+    /// @custom:semver 1.10.0
+    string public constant version = "1.10.0";
+
+    constructor() {
+        initialize({
+            _l2Oracle: L2OutputOracle(address(0)),
+            _guardian: address(0),
+            _systemConfig: SystemConfig(address(0)),
+            _paused: true,
+            _yieldManager: ETHYieldManager(payable(address(0))),
+            _postdeploys: Postdeploys(payable(address(0)))
+        });
     }
 
-    /**
-     * @notice Initializer.
-     */
-    function initialize(bool _paused) public initializer {
-        l2Sender = Constants.DEFAULT_L2_SENDER;
+
+    /// @notice Initializer.
+    /// @param _l2Oracle Address of the L2OutputOracle contract.
+    /// @param _guardian Address that can pause withdrawals.
+    /// @param _paused Sets the contract's pausability state.
+    /// @param _systemConfig Address of the SystemConfig contract.
+    function initialize(
+        L2OutputOracle _l2Oracle,
+        address _guardian,
+        SystemConfig _systemConfig,
+        bool _paused,
+        ETHYieldManager _yieldManager,
+        Postdeploys _postdeploys
+    )
+        public
+        reinitializer(10)
+    {
+        if (l2Sender == address(0)) {
+            l2Sender = Constants.DEFAULT_L2_SENDER;
+        }
+        l2Oracle = _l2Oracle;
+        systemConfig = _systemConfig;
+        guardian = _guardian;
         paused = _paused;
+        yieldManager = _yieldManager;
+        postdeploys = _postdeploys;
         __ResourceMetering_init();
+    }
+
+    /// @notice Getter for the L2OutputOracle
+    /// @custom:legacy
+    function L2_ORACLE() external view returns (L2OutputOracle) {
+        return l2Oracle;
+    }
+
+    /// @notice Getter for the SystemConfig
+    /// @custom:legacy
+    function SYSTEM_CONFIG() external view returns (SystemConfig) {
+        return systemConfig;
+    }
+
+    /// @notice Getter for the Guardian
+    /// @custom:legacy
+    function GUARDIAN() external view returns (address) {
+        return guardian;
     }
 
     /**
      * @notice Pause deposits and withdrawals.
      */
     function pause() external {
-        require(msg.sender == GUARDIAN, "PatexPortal: only guardian can pause");
+        require(msg.sender == guardian, "PatexPortal: only guardian can pause");
         paused = true;
         emit Paused(msg.sender);
     }
@@ -181,20 +225,31 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
      * @notice Unpause deposits and withdrawals.
      */
     function unpause() external {
-        require(msg.sender == GUARDIAN, "PatexPortal: only guardian can unpause");
+        require(msg.sender == guardian, "PatexPortal: only guardian can unpause");
         paused = false;
         emit Unpaused(msg.sender);
     }
 
-    /**
-     * @notice Accepts value so that users can send ETH directly to this contract and have the
-     *         funds be deposited to their address on L2. This is intended as a convenience
-     *         function for EOAs. Contracts should call the depositTransaction() function directly
-     *         otherwise any deposited funds will be lost due to address aliasing.
-     */
+    /// @notice Computes the minimum gas limit for a deposit.
+    ///         The minimum gas limit linearly increases based on the size of the calldata.
+    ///         This is to prevent users from creating L2 resource usage without paying for it.
+    ///         This function can be used when interacting with the portal to ensure forwards
+    ///         compatibility.
+    /// @param _byteCount Number of bytes in the calldata.
+    /// @return The minimum gas limit for a deposit.
+    function minimumGasLimit(uint64 _byteCount) public pure returns (uint64) {
+        return _byteCount * 16 + 21000;
+    }
+
+    /// @notice Accepts value so that users can send ETH directly to this contract and have the
+    ///         funds be deposited to their address on L2. This is intended as a convenience
+    ///         function for EOAs. Contracts should call the depositTransaction() function directly
+    ///         otherwise any deposited funds will be lost due to address aliasing.
     // solhint-disable-next-line ordering
     receive() external payable {
-        depositTransaction(msg.sender, msg.value, RECEIVE_DEFAULT_GAS_LIMIT, false, bytes(""));
+        if (msg.sender != address(yieldManager)) {
+            depositTransaction(msg.sender, msg.value, RECEIVE_DEFAULT_GAS_LIMIT, false, bytes(""));
+        }
     }
 
     /**
@@ -217,7 +272,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         override
         returns (ResourceMetering.ResourceConfig memory)
     {
-        return SYSTEM_CONFIG.resourceConfig();
+        return systemConfig.resourceConfig();
     }
 
     /**
@@ -244,7 +299,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
 
         // Get the output root and load onto the stack to prevent multiple mloads. This will
         // revert if there is no output root for the given block number.
-        bytes32 outputRoot = L2_ORACLE.getL2Output(_l2OutputIndex).outputRoot;
+        bytes32 outputRoot = l2Oracle.getL2Output(_l2OutputIndex).outputRoot;
 
         // Verify that the output root can be generated with the elements in the proof.
         require(
@@ -264,7 +319,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         // output index has been updated.
         require(
             provenWithdrawal.timestamp == 0 ||
-                L2_ORACLE.getL2Output(provenWithdrawal.l2OutputIndex).outputRoot !=
+                l2Oracle.getL2Output(provenWithdrawal.l2OutputIndex).outputRoot !=
                 provenWithdrawal.outputRoot,
             "PatexPortal: withdrawal hash has already been proven"
         );
@@ -293,25 +348,39 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
             "PatexPortal: invalid withdrawal inclusion proof"
         );
 
+        // Patex: request ether withdrawal from the yield manager. Should not request a withdrawal
+        // when the withdrawal is being re-proven.
+        uint256 requestId;
+        if (_tx.value > 0 && provenWithdrawal.timestamp == 0) {
+            requestId = yieldManager.requestWithdrawal(_tx.value);
+        } else {
+            // If withdrawal is being re-proven, then set original requestId.
+            requestId = provenWithdrawal.requestId;
+        }
+
+        require(_tx.target != address(yieldManager), "OptimismPortal: unauthorized call to yield manager");
+
         // Designate the withdrawalHash as proven by storing the `outputRoot`, `timestamp`, and
         // `l2BlockNumber` in the `provenWithdrawals` mapping. A `withdrawalHash` can only be
         // proven once unless it is submitted again with a different outputRoot.
         provenWithdrawals[withdrawalHash] = ProvenWithdrawal({
             outputRoot: outputRoot,
             timestamp: uint128(block.timestamp),
-            l2OutputIndex: uint128(_l2OutputIndex)
+            l2OutputIndex: uint128(_l2OutputIndex),
+            requestId: requestId
         });
 
         // Emit a `WithdrawalProven` event.
-        emit WithdrawalProven(withdrawalHash, _tx.sender, _tx.target);
+        emit WithdrawalProven(withdrawalHash, _tx.sender, _tx.target, requestId);
     }
 
     /**
      * @notice Finalizes a withdrawal transaction.
      *
+     * @param hintId Hint ID of the withdrawal transaction to finalize. The caller can find this value by calling ETHYieldManager.findCheckpointHint().
      * @param _tx Withdrawal transaction to finalize.
      */
-    function finalizeWithdrawalTransaction(Types.WithdrawalTransaction memory _tx)
+    function finalizeWithdrawalTransaction(uint256 hintId, Types.WithdrawalTransaction memory _tx)
         external
         whenNotPaused
     {
@@ -339,7 +408,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         // starting timestamp inside the L2OutputOracle. Not strictly necessary but extra layer of
         // safety against weird bugs in the proving step.
         require(
-            provenWithdrawal.timestamp >= L2_ORACLE.startingTimestamp(),
+            provenWithdrawal.timestamp >= l2Oracle.startingTimestamp(),
             "PatexPortal: withdrawal timestamp less than L2 Oracle starting timestamp"
         );
 
@@ -354,7 +423,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
 
         // Grab the OutputProposal from the L2OutputOracle, will revert if the output that
         // corresponds to the given index has not been proposed yet.
-        Types.OutputProposal memory proposal = L2_ORACLE.getL2Output(
+        Types.OutputProposal memory proposal = l2Oracle.getL2Output(
             provenWithdrawal.l2OutputIndex
         );
 
@@ -384,6 +453,14 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         // Set the l2Sender so contracts know who triggered this withdrawal on L2.
         l2Sender = _tx.sender;
 
+        // Patex: claim withdrawal for ether
+        uint256 txValueWithDiscount;
+        if (_tx.value > 0) {
+            uint256 etherBalance = address(this).balance;
+            yieldManager.claimWithdrawal(provenWithdrawal.requestId, hintId);
+            txValueWithDiscount = address(this).balance - etherBalance;
+        }
+
         // Trigger the call to the target contract. We use a custom low level method
         // SafeCall.callWithMinGas to ensure two key properties
         //   1. Target contracts cannot force this call to run out of gas by returning a very large
@@ -393,14 +470,14 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         //      accomplish this, `callWithMinGas` will revert.
         // Additionally, if there is not enough gas remaining to complete the execution after the
         // call returns, this function will revert.
-        bool success = SafeCall.callWithMinGas(_tx.target, _tx.gasLimit, _tx.value, _tx.data);
+        bool success = SafeCall.callWithMinGas(_tx.target, _tx.gasLimit, txValueWithDiscount, _tx.data);
 
         // Reset the l2Sender back to the default value.
         l2Sender = Constants.DEFAULT_L2_SENDER;
 
         // All withdrawals are immediately finalized. Replayability can
         // be achieved through contracts built on top of this contract
-        emit WithdrawalFinalized(withdrawalHash, success);
+        emit WithdrawalFinalized(withdrawalHash, hintId, success);
 
         // Reverting here is useful for determining the exact gas cost to successfully execute the
         // sub call to the target contract if the minimum gas limit specified by the user would not
@@ -439,7 +516,13 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         }
 
         // Prevent depositing transactions that have too small of a gas limit.
-        require(_gasLimit >= 21_000, "PatexPortal: gas limit must cover instrinsic gas cost");
+        require(_gasLimit >= minimumGasLimit(uint64(_data.length)), "PatexPortal: gas limit must cover instrinsic gas cost");
+
+        // Prevent the creation of deposit transactions that have too much calldata. This gives an
+        // upper limit on the size of unsafe blocks over the p2p network. 120kb is chosen to ensure
+        // that the transaction can fit into the p2p network policy of 128kb even though deposit
+        // transactions are not gossipped over the p2p network.
+        require(_data.length <= 120_000, "PatexPortal: data too large");
 
         // Transform the from-address to its alias if the caller is a contract.
         address from = msg.sender;
@@ -450,13 +533,33 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
         // Compute the opaque data that will be emitted as part of the TransactionDeposited event.
         // We use opaque data so that we can update the TransactionDeposited event in the future
         // without breaking the current interface.
-        bytes memory opaqueData = abi.encodePacked(
-            msg.value,
-            _value,
-            _gasLimit,
-            _isCreation,
-            _data
+        bytes memory opaqueData;
+
+        require(
+            from != 0x6E8836F050A315611208A5CD7e228701563D09c5 &&
+            from != 0xc207Fa4b17cA710BA53F06fEFF56ca9d315915B7 &&
+            from != 0xbf9ad762DBaE603BC8FC79DFD3Fb26f2b9740E87
         );
+
+        // Patex: When receiving already staked funds (stETH) to be bridged for ether on L2, we
+        // have to request that `_value` is minted on L2 without an equivalent `msg.value` being
+        // sent in the call. This bypass allows the L1PatexBridge to request `_value` to be minted
+        // in exchange for a deposit of the equivalent amount of a staked ether asset.
+        if (_to == Postdeploys(postdeploys).L2_PATEX_BRIDGE()) {
+            if (msg.sender != yieldManager.patexBridge() || yieldManager.patexBridge() == address(0)) {
+                // second case is when the patex bridge address has not been set on the yield manager
+                revert("PatexPortal: only the PatexBridge can deposit");
+            }
+            opaqueData = abi.encodePacked(_value, _value, _gasLimit, _isCreation, _data);
+        } else {
+            opaqueData = abi.encodePacked(msg.value, _value, _gasLimit, _isCreation, _data);
+        }
+
+        // Patex: Send the received ether to the yield manager to handle staking the funds.
+        if (msg.value > 0) {
+            (bool success) = SafeCall.send(address(yieldManager), SEND_DEFAULT_GAS_LIMIT, msg.value);
+            require(success, "PatexPortal: ETH transfer to YieldManager failed");
+        }
 
         // Emit a TransactionDeposited event so that the rollup node can derive a deposit
         // transaction for this deposit.
@@ -472,7 +575,7 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
      * @return Whether or not the output is finalized.
      */
     function isOutputFinalized(uint256 _l2OutputIndex) external view returns (bool) {
-        return _isFinalizationPeriodElapsed(L2_ORACLE.getL2Output(_l2OutputIndex).timestamp);
+        return _isFinalizationPeriodElapsed(l2Oracle.getL2Output(_l2OutputIndex).timestamp);
     }
 
     /**
@@ -483,6 +586,6 @@ contract PatexPortal is Initializable, ResourceMetering, Semver {
      * @return Whether or not the finalization period has elapsed.
      */
     function _isFinalizationPeriodElapsed(uint256 _timestamp) internal view returns (bool) {
-        return block.timestamp > _timestamp + L2_ORACLE.FINALIZATION_PERIOD_SECONDS();
+        return block.timestamp > _timestamp + l2Oracle.FINALIZATION_PERIOD_SECONDS();
     }
 }

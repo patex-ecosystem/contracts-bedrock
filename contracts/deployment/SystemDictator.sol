@@ -352,12 +352,13 @@ contract SystemDictator is OwnableUpgradeable {
             )
         );
 
+        // restaking commented
         // Upgrade and initialize the PatexPortal.
-        config.globalConfig.proxyAdmin.upgradeAndCall(
-            payable(config.proxyAddressConfig.patexPortalProxy),
-            address(config.implementationAddressConfig.patexPortalImpl),
-            abi.encodeCall(PatexPortal.initialize, (patexPortalDynamicConfig))
-        );
+        // config.globalConfig.proxyAdmin.upgradeAndCall(
+        //     payable(config.proxyAddressConfig.patexPortalProxy),
+        //     address(config.implementationAddressConfig.patexPortalImpl),
+        //     abi.encodeCall(PatexPortal.initialize, (patexPortalDynamicConfig))
+        // );
 
         // Upgrade the L1CrossDomainMessenger.
         config.globalConfig.proxyAdmin.upgrade(
@@ -365,24 +366,25 @@ contract SystemDictator is OwnableUpgradeable {
             address(config.implementationAddressConfig.l1CrossDomainMessengerImpl)
         );
 
+        // restaking commented
         // Try to initialize the L1CrossDomainMessenger, only fail if it's already been initialized.
-        try
-            L1CrossDomainMessenger(config.proxyAddressConfig.l1CrossDomainMessengerProxy)
-                .initialize()
-        {
+        // try
+        //     L1CrossDomainMessenger(config.proxyAddressConfig.l1CrossDomainMessengerProxy)
+        //         .initialize()
+        // {
             // L1CrossDomainMessenger is the one annoying edge case difference between existing
             // networks and fresh networks because in existing networks it'll already be
             // initialized but in fresh networks it won't be. Try/catch is the easiest and most
             // consistent way to handle this because initialized() is not exposed publicly.
-        } catch Error(string memory reason) {
-            require(
-                keccak256(abi.encodePacked(reason)) ==
-                    keccak256("Initializable: contract is already initialized"),
-                string.concat("SystemDictator: unexpected error initializing L1XDM: ", reason)
-            );
-        } catch {
-            revert("SystemDictator: unexpected error initializing L1XDM (no reason)");
-        }
+        // } catch Error(string memory reason) {
+        //     require(
+        //         keccak256(abi.encodePacked(reason)) ==
+        //             keccak256("Initializable: contract is already initialized"),
+        //         string.concat("SystemDictator: unexpected error initializing L1XDM: ", reason)
+        //     );
+        // } catch {
+        //     revert("SystemDictator: unexpected error initializing L1XDM (no reason)");
+        // }
 
         // Transfer ETH from the L1StandardBridge to the PatexPortal.
         config.globalConfig.proxyAdmin.upgradeAndCall(

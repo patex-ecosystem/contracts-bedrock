@@ -115,7 +115,7 @@ contract PostSherlockL2 is Script {
 
         proxies[OP_GOERLI] = ContractSet({
             BaseFeeVault: Predeploys.BASE_FEE_VAULT,
-            GasPriceOracle: Predeploys.GAS_PRICE_ORACLE,
+            GasPriceOracle: Postdeploys(address(0)).GAS()_PRICE_ORACLE,
             L1Block: Predeploys.L1_BLOCK_ATTRIBUTES,
             L1FeeVault: Predeploys.L1_FEE_VAULT,
             L2CrossDomainMessenger: Predeploys.L2_CROSS_DOMAIN_MESSENGER,

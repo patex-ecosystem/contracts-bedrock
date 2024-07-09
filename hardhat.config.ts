@@ -7,6 +7,7 @@ import '@eth-patex/hardhat-deploy-config'
 import '@foundry-rs/hardhat-forge'
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
+// import '@openzeppelin/hardhat-upgrades'
 
 // Hardhat tasks
 import './tasks'
@@ -120,6 +121,8 @@ const config: HardhatUserConfig = {
     },
     'patex-sepolia': {
       chainId: 471100,
+      url: process.env.L2_RPC || '',
+      accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
     },
     patex: {
       chainId: 789,

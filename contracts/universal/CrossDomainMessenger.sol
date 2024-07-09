@@ -121,6 +121,9 @@ abstract contract CrossDomainMessenger is
      */
     uint16 public constant MESSAGE_VERSION = 1;
 
+    /// @notice Constant overhead added to the base gas for a message.
+    uint64 public constant RELAY_CONSTANT_OVERHEAD = 200_000;
+
     /**
      * @notice Constant overhead added to the base gas for a message.
      */
@@ -140,6 +143,17 @@ abstract contract CrossDomainMessenger is
      * @notice Extra gas added to base gas for each byte of calldata in a message.
      */
     uint64 public constant MIN_GAS_CALLDATA_OVERHEAD = 16;
+
+    /// @notice Gas reserved for performing the external call in `relayMessage`.
+    uint64 public constant RELAY_CALL_OVERHEAD = 40_000;
+
+    /// @notice Gas reserved for finalizing the execution of `relayMessage` after the safe call.
+    uint64 public constant RELAY_RESERVED_GAS = 60_000;
+
+    /// @notice Gas reserved for the execution between the `hasMinGas` check and the external
+    ///         call in `relayMessage`.
+    uint64 public constant RELAY_GAS_CHECK_BUFFER = 5_000;
+
 
     /**
      * @notice Address of the paired CrossDomainMessenger contract on the other chain.
@@ -295,7 +309,7 @@ abstract contract CrossDomainMessenger is
         uint256 _value,
         uint256 _minGasLimit,
         bytes calldata _message
-    ) external payable {
+    ) external payable virtual {
         (, uint16 version) = Encoding.decodeVersionedNonce(_nonce);
         require(
             version < 2,

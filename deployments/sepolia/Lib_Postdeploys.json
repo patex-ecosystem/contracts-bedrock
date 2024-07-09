@@ -1,0 +1,356 @@
+{
+  "address": "0xDfda5a9e7F34AE310c3DFC8505558348Ae0200c4",
+  "abi": [
+    {
+      "type": "function",
+      "name": "PATEX",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "GAS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "L2_PATEX_BRIDGE",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "SHARES",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "USDB",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "WETH_REBASING",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "renounceOwnership",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setPATEX",
+      "inputs": [
+        {
+          "name": "_PATEX",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setGAS",
+      "inputs": [
+        {
+          "name": "_GAS",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setL2_PATEX_BRIDGE",
+      "inputs": [
+        {
+          "name": "_L2_PATEX_BRIDGE",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setSHARES",
+      "inputs": [
+        {
+          "name": "_SHARES",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setUSDB",
+      "inputs": [
+        {
+          "name": "_USDB",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setWETH_REBASING",
+      "inputs": [
+        {
+          "name": "_WETH_REBASING",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    }
+  ],
+  "transactionHash": "0x39a364d9b6ccb325fd890be9ae8548393c7ecb80b5eec6994d294aa48c74d1ea",
+  "receipt": {
+    "to": null,
+    "from": "0x85a535089054BEd462875cDc1941aa662579e9bD",
+    "contractAddress": "0xDfda5a9e7F34AE310c3DFC8505558348Ae0200c4",
+    "transactionIndex": 41,
+    "gasUsed": "448610",
+    "logsBloom": "0x02000000000000000000000000000000000000000000000010800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000020000000000000000000800000000000000000000000000000000400000000000000000000000000000800000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x219792346fab2f8bba98b8560bd8bbbf1b552fd6863c6346b23800c7c797aa2d",
+    "transactionHash": "0x39a364d9b6ccb325fd890be9ae8548393c7ecb80b5eec6994d294aa48c74d1ea",
+    "logs": [
+      {
+        "transactionIndex": 41,
+        "blockNumber": 6085079,
+        "transactionHash": "0x39a364d9b6ccb325fd890be9ae8548393c7ecb80b5eec6994d294aa48c74d1ea",
+        "address": "0xDfda5a9e7F34AE310c3DFC8505558348Ae0200c4",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000085a535089054bed462875cdc1941aa662579e9bd"
+        ],
+        "data": "0x",
+        "logIndex": 78,
+        "blockHash": "0x219792346fab2f8bba98b8560bd8bbbf1b552fd6863c6346b23800c7c797aa2d"
+      }
+    ],
+    "blockNumber": 6085079,
+    "cumulativeGasUsed": "6863580",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "ab67a5044550a086ff4d6fc6bdff1b0b",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"PATEX\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GAS\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"L2_PATEX_BRIDGE\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SHARES\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"USDB\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"WETH_REBASING\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_PATEX\",\"type\":\"address\"}],\"name\":\"setPATEX\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_GAS\",\"type\":\"address\"}],\"name\":\"setGAS\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_L2_PATEX_BRIDGE\",\"type\":\"address\"}],\"name\":\"setL2_PATEX_BRIDGE\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_SHARES\",\"type\":\"address\"}],\"name\":\"setSHARES\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_USDB\",\"type\":\"address\"}],\"name\":\"setUSDB\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_WETH_REBASING\",\"type\":\"address\"}],\"name\":\"setWETH_REBASING\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"PATEX()\":{\"notice\":\"Address of the Patex predeploy.\"},\"GAS()\":{\"notice\":\"Address of the Gas predeploy.\"},\"L2_PATEX_BRIDGE()\":{\"notice\":\"Address of the L2PatexBridge predeploy.\"},\"SHARES()\":{\"notice\":\"Address of the Shares predeploy.\"},\"USDB()\":{\"notice\":\"Address of the USDB predeploy.\"},\"WETH_REBASING()\":{\"notice\":\"Address of the WETH predeploy.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/L2/Postdeploys.sol\":\"Postdeploys\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\"},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/contracts-upgradeable/=node_modules/@openzeppelin/contracts-upgradeable/\",\":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/\",\":@rari-capital/solmate/=node_modules/@rari-capital/solmate/\",\":ds-test/=node_modules/ds-test/src/\",\":forge-std/=node_modules/forge-std/src/\",\":hardhat-deploy/=node_modules/hardhat-deploy/\",\":hardhat/=node_modules/hardhat/\",\":solmate/=node_modules/solmate/\"]},\"sources\":{\"contracts/L2/Postdeploys.sol\":{\"keccak256\":\"0xba27027e830fd4f956a17a4b38b69a98ddf2f743f34b4637b0b0fcd60273066c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d2ea47618f72354ee36fe91b34515eb34526488f01d96c2da5b6c8293602600\",\"dweb:/ipfs/QmNXgFyL4uH5vu7KYJKW7quWVjHACrhCrUsumuJT6hmASw\"]},\"node_modules/@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2\",\"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y\"]},\"node_modules/@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]}},\"version\":1}",
+  "bytecode": "0x6080604052600180546001600160a01b0319908116909155600280548216905560038054821690556004805482169055600580548216905560068054909116905534801561004c57600080fd5b506100563361005b565b6100ab565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b61067a806100ba6000396000f3fe608060405234801561001057600080fd5b50600436106100f55760003560e01c80637be76be811610097578063bb1913f311610066578063bb1913f31461021d578063c1254a551461023d578063f2fde38b1461025d578063f8c622741461027057600080fd5b80637be76be8146101b95780638da5cb5b146101cc57806397d75776146101ea578063a03ac4691461020a57600080fd5b806333a23946116100d357806333a2394614610178578063496026491461018b5780635c64bfe71461019e578063715018a6146101b157600080fd5b80630d2917fb146100fa5780632577bba11461010f57806331a0edec14610158575b600080fd5b61010d610108366004610630565b610290565b005b60055461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b60045461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61010d610186366004610630565b6102df565b61010d610199366004610630565b61032e565b61010d6101ac366004610630565b61037d565b61010d6103cc565b61010d6101c7366004610630565b6103e0565b60005473ffffffffffffffffffffffffffffffffffffffff1661012f565b60035461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61010d610218366004610630565b61042f565b60025461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b60015461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61010d61026b366004610630565b61047e565b60065461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61029861053a565b600380547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b6102e761053a565b600580547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61033661053a565b600280547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61038561053a565b600680547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b6103d461053a565b6103de60006105bb565b565b6103e861053a565b600480547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61043761053a565b600180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61048661053a565b73ffffffffffffffffffffffffffffffffffffffff811661052e576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f646472657373000000000000000000000000000000000000000000000000000060648201526084015b60405180910390fd5b610537816105bb565b50565b60005473ffffffffffffffffffffffffffffffffffffffff1633146103de576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152606401610525565b6000805473ffffffffffffffffffffffffffffffffffffffff8381167fffffffffffffffffffffffff0000000000000000000000000000000000000000831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b60006020828403121561064257600080fd5b813573ffffffffffffffffffffffffffffffffffffffff8116811461066657600080fd5b939250505056fea164736f6c634300080f000a",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100f55760003560e01c80637be76be811610097578063bb1913f311610066578063bb1913f31461021d578063c1254a551461023d578063f2fde38b1461025d578063f8c622741461027057600080fd5b80637be76be8146101b95780638da5cb5b146101cc57806397d75776146101ea578063a03ac4691461020a57600080fd5b806333a23946116100d357806333a2394614610178578063496026491461018b5780635c64bfe71461019e578063715018a6146101b157600080fd5b80630d2917fb146100fa5780632577bba11461010f57806331a0edec14610158575b600080fd5b61010d610108366004610630565b610290565b005b60055461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b60045461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61010d610186366004610630565b6102df565b61010d610199366004610630565b61032e565b61010d6101ac366004610630565b61037d565b61010d6103cc565b61010d6101c7366004610630565b6103e0565b60005473ffffffffffffffffffffffffffffffffffffffff1661012f565b60035461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61010d610218366004610630565b61042f565b60025461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b60015461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61010d61026b366004610630565b61047e565b60065461012f9073ffffffffffffffffffffffffffffffffffffffff1681565b61029861053a565b600380547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b6102e761053a565b600580547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61033661053a565b600280547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61038561053a565b600680547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b6103d461053a565b6103de60006105bb565b565b6103e861053a565b600480547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61043761053a565b600180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b61048661053a565b73ffffffffffffffffffffffffffffffffffffffff811661052e576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f646472657373000000000000000000000000000000000000000000000000000060648201526084015b60405180910390fd5b610537816105bb565b50565b60005473ffffffffffffffffffffffffffffffffffffffff1633146103de576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152606401610525565b6000805473ffffffffffffffffffffffffffffffffffffffff8381167fffffffffffffffffffffffff0000000000000000000000000000000000000000831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b60006020828403121561064257600080fd5b813573ffffffffffffffffffffffffffffffffffffffff8116811461066657600080fd5b939250505056fea164736f6c634300080f000a",
+  "devdoc": {
+    "version": 1,
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    }
+  },
+  "userdoc": {
+    "version": 1,
+    "kind": "user",
+    "methods": {
+      "PATEX()": {
+        "notice": "Address of the Patex predeploy."
+      },
+      "GAS()": {
+        "notice": "Address of the Gas predeploy."
+      },
+      "L2_PATEX_BRIDGE()": {
+        "notice": "Address of the L2PatexBridge predeploy."
+      },
+      "SHARES()": {
+        "notice": "Address of the Shares predeploy."
+      },
+      "USDB()": {
+        "notice": "Address of the USDB predeploy."
+      },
+      "WETH_REBASING()": {
+        "notice": "Address of the WETH predeploy."
+      }
+    }
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 28603,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 7814,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "SHARES",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 7818,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "GAS",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_address"
+      },
+      {
+        "astId": 7822,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "PATEX",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_address"
+      },
+      {
+        "astId": 7826,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "USDB",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_address"
+      },
+      {
+        "astId": 7830,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "WETH_REBASING",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_address"
+      },
+      {
+        "astId": 7834,
+        "contract": "contracts/L2/Postdeploys.sol:Postdeploys",
+        "label": "L2_PATEX_BRIDGE",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}
